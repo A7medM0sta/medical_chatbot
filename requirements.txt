@@ -6,4 +6,5 @@ trl
 sentencepiece
 wandb
 bitsandbytes
+gradio
 
