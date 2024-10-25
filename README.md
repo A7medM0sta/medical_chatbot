@@ -183,7 +183,7 @@ class SelfAttention(nn.Module):
 ## RMS (Root Mean Squared Normalization)
 Root Mean Square Normalization (RMSNorm) is a relatively novel normalization technique introduced by Biao Zhang, Rico Sennrich in 2019. Unlike BN and LN, RMSNorm normalizes activations based on the root mean square of the activations themselves, rather than using mini-batch or layer statistics. This approach ensures that the activations are consistently scaled regardless of the mini-batch size or the number of features. Additionally, RMSNorm introduces learnable scale parameters,
 offering similar adaptability to Batch Normalization.
-<center><img src="assets/rmsn.webp" width="300" height="300"> </center>
+<img src="assets/rmsn.webp">
 Note: Just like Layer Normalization, we also have a learnable parameter gamma (g in the formula on the left) that is multiplied by the normalized values.
 
 ```python
@@ -206,11 +206,11 @@ class RMSNorm(nn.Module):
 ## SwiGLU Activation Function
 SwiGLU is an activation function used in deep neural networks that is a variant of GLU (Gated Linear Unit). It is used to calculate the output of a neuron in a neural network by taking in the weighted sum of the input and applying a non-linear function to it. SwiGLU is defined using a mathematical expression that involves the Swish function and tensor multiplication. SwiGLU is a variant of GLU, which means that it is based on the same mathematical concept as GLU. However, SwiGLU has a different non-linear function than GLU. Specifically, SwiGLU uses the Swish function, which is a recently proposed activation function that has been shown to outperform other activation functions in some applications.
 SwiGLU has several benefits that make it a useful activation function in neural networks. First, it is based on the GLU concept, which has been shown to perform well in many applications. Second, it uses the Swish function, which has been shown to outperform other activation functions in some cases, particularly when combined with residual connections. Third, it allows for efficient computation due to its use of element-wise multiplication.
-<center><img src="assets/swin.webp" width="300" height="300"> </center>
+<img src="assets/swin.webp">
 The author compared the performance of a Transformer model by using different activation functions in the Feed-Forward layer of the Transformer architecture.
-<center><img src="assets/comapare_active.webp" width="300" height="300"> </center>
-<center><img src="assets/swin_2.webp" width="300" height="300"></center>
-<center><img src="assets/swin_3.webp" width="300" height="300"></center>
+<img src="assets/comapare_active.webp">
+<img src="assets/swin_2.webp">
+<img src="assets/swin_3.webp">
 
 ```python
 def forward(self, x: torch.Tensor):
@@ -500,4 +500,3 @@ if __name__ == '__main__':
     for i in range(len(out_text)):
         print(f"{out_text[i]}")
         print('-' * 50)
-```
