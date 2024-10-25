@@ -88,7 +88,7 @@ def apply_rotary_embeddings(x: torch.Tensor, freq_complex: torch.Tensor, device:
 * At every step of the inference, we are only interested in the last token output by the model, because we already have the previous ones. However, the model needs access to all the previous tokens to decide on which token to output, since they constitute its context (or the “prompt”).
 * It’s a way to make the model do less computation on the token it has already seen during inference. The solution is the KV cache!
 
-<center><img src="assets/kache.webp" width="300" height="300"> </center>
+<img src="assets/kache.webp" width="300" height="300"> 
 
 ```python
     def repeat_kv(x: torch.Tensor, n_rep: int)-> torch.Tensor:
@@ -106,8 +106,8 @@ def apply_rotary_embeddings(x: torch.Tensor, freq_complex: torch.Tensor, device:
 
 ## Grouped Multi-Query Attention
 * Grouped-query attention(GQA) is an interpolation of multi-query and multi-head attention. It achieves a quality similar to multi-head attention while maintaining a comparable speed to multi-query attention. The standard practice for autoregressive decoding is to cache the keys and values of the previous tokens in the sequence to speed up attention computation. However, as the context window or batch size increases, the memory cost associated with the size of the key-value cache(kv cache) in the multi-head attention(MHA) model significantly increases. Multi-Query attention(MQA) is a mechanism that uses only a single key-value head for multiple queries, which can save memory and greatly speed up decoder inference. Llama incorporates the (GQA) to address the memory bandwidth challenges during the autoregressive decoding of Transformer models. The primary issue stems from GPU does all the computations faster than they can move them into memory. The need to load the decoder weights and attention keys at each stage which consumes excessive memory.
-<center><img src="assets/qqa.webp" width="300" height="300"> </center>
-<center><img src="assets/qqq_2.webp" height="300" width="300"></center>
+<img src="assets/qqa.webp">
+<img src="assets/qqq_2.webp">
 
 ```python
 class SelfAttention(nn.Module): 
